@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Three.js Scene</title>
+    <title>Interactive Three.js Scene</title>
     <style>
         body { margin: 0; }
         canvas { display: block; }
@@ -12,27 +12,102 @@
 <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        // Create a Three.js scene
+        // Scene setup
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer();
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
 
+        // Add a cube
         const geometry = new THREE.BoxGeometry();
         const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
         const cube = new THREE.Mesh(geometry, material);
+        cube.position.set(0, 0, -5); // Move the cube back a bit
         scene.add(cube);
 
-        camera.position.z = 5;
+        // Add a sphere
+        const sphereGeometry = new THREE.SphereGeometry(1, 32, 32);
+        const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+        const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+        sphere.position.set(2, 0, -5); // Move the sphere to the right
+        scene.add(sphere);
 
-        // Render the scene
+        // Add animation for spinning objects
         function animate() {
-            requestAnimationFrame(animate);
             cube.rotation.x += 0.01;
             cube.rotation.y += 0.01;
+            sphere.rotation.x += 0.01;
+            sphere.rotation.y += 0.01;
             renderer.render(scene, camera);
+            requestAnimationFrame(animate);
         }
+
+        // Raycaster for mouse interaction
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+
+        // Function to handle mouse movement
+        function onMouseMove(event) {
+            // Calculate mouse position in normalized device coordinates
+            mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+            mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+        }
+
+        // Function to handle mouse click and drag
+        function onMouseDown(event) {
+            // Update the picking ray with the camera and mouse position
+            raycaster.setFromCamera(mouse, camera);
+
+            // Calculate objects intersecting the picking ray
+            const intersects = raycaster.intersectObjects(scene.children);
+
+            if (intersects.length > 0) {
+                // If there's an intersection, set the selected object as the first one
+                const selectedObject = intersects[0].object;
+
+                // Calculate offset
+                const intersectionPoint = intersects[0].point;
+                const offset = new THREE.Vector3().subVectors(intersectionPoint, selectedObject.position);
+
+                // Function to handle mouse movement while dragging
+                function onMouseMove(event) {
+                    // Update the picking ray with the camera and mouse position
+                    raycaster.setFromCamera(mouse, camera);
+
+                    // Calculate objects intersecting the picking ray
+                    const intersects = raycaster.intersectObjects(scene.children);
+
+                    if (intersects.length > 0) {
+                        // If there's an intersection, move the selected object to the intersection point
+                        const intersectionPoint = intersects[0].point;
+                        selectedObject.position.copy(intersectionPoint.sub(offset));
+                    }
+                }
+
+                // Add mouse move event listener for dragging
+                document.addEventListener('mousemove', onMouseMove);
+
+                // Function to handle mouse release
+                function onMouseUp() {
+                    // Remove event listeners
+                    document.removeEventListener('mousemove', onMouseMove);
+                    document.removeEventListener('mouseup', onMouseUp);
+                }
+
+                // Add mouse up event listener to stop dragging
+                document.addEventListener('mouseup', onMouseUp);
+            }
+        }
+
+        // Add mouse event listeners
+        document.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('mousedown', onMouseDown);
+
+        // Set camera position
+        camera.position.z = 5;
+
+        // Start animation
         animate();
     </script>
 </body>
