@@ -1,39 +1,136 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
+	<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Three.js Scene</title>
     <style>
-        body { margin: 0; }
-        canvas { display: block; }
-    </style>
-</head>
-<body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script>
-        // Create a Three.js scene
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
-
-        const geometry = new THREE.BoxGeometry();
-        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-        const cube = new THREE.Mesh(geometry, material);
-        scene.add(cube);
-
-        camera.position.z = 5;
-
-        // Render the scene
-        function animate() {
-            requestAnimationFrame(animate);
-            cube.rotation.x += 0.01;
-            cube.rotation.y += 0.01;
-            renderer.render(scene, camera);
+        .grid-item {
+            position: relative; /*relative or absolute, fixed, etc. */
+            top: 50px;
+            left: 50px;
+ 
+            background-color: #e0e0e0;
+            border: 1px solid #999;
         }
-        animate();
-    </script>
+    </style>
+ 
+	<link rel="stylesheet" href="style.css">
+	<title>3D viewer</title>
+</head>
+
+<body>
+<h2>Three.js <span>3D viewer</span></h2>
+
+<div id="dat-gui-holder" ></div>
+<div class="grid-container" >
+	<div class="grid-item" align="text-bottom" >
+		<canvas id="c" class="c"
+			bgColor='#111111'
+			baseColor = '#aaaaaa'
+			showBasePlane="true"
+			viewWidth="300"
+			viewHeight='300'
+			isWireframe="false"
+			debug="false"
+
+			obj ="/site/models/Duck33336_95.glb"
+
+		></canvas>
+ 
+	</div>
+		<div class="grid-item" align="text-bottom" >
+		<canvas id="c" class="c"
+			bgColor='#111111'
+			baseColor = '#0000aa'
+			showBasePlane="false"
+			viewWidth="300"
+			viewHeight='300'
+			isWireframe="false"
+			camPos=" 0, 0, 0",
+			camLookAt= "0, 0, 1"
+			obj ="/site/models/PenrosePentagon.stl"
+		></canvas>
+	</div>
+	<!-- <div class="grid-item" align="text-bottom" >
+		<canvas id="c" class="c"
+			bgColor='#111111'
+			baseColor = '#0000aa'
+			viewWidth="300"
+			viewHeight='300'
+			isWireframe="false"
+			obj ="http://localhost:8080/site/models/Duck33336_95.obj"
+			mtl ="http://localhost:8080/site/models/Duck33336_95.mtl"
+		></canvas>
+	</div> -->
+<!--
+	<div class="grid-item" align="text-bottom" >
+		<canvas id="c" class="c"
+			bgColor='#111111'
+			baseColor = '#0000aa'
+			viewWidth="300"
+			viewHeight='300'
+			isWireframe="false"
+			obj ="http://localhost:8080/site/models/Duck33336_95.glb"
+		></canvas>
+	</div>
+
+	<div class="grid-item" align="text-bottom" >
+		<canvas id="c" class="c"
+			bgColor='#111111'
+			baseColor = '#0000aa'
+			showBasePlane="false"
+			viewWidth="300"
+			viewHeight='300'
+			showMenu="false"
+			camPos="0, 0, 0",
+			camLookAt= "0, 0, 1"
+			obj ="http://localhost:8080/site/models/PenroseRectangle.stl"
+		></canvas>
+	</div>
+		<div class="grid-item" align="text-bottom" >
+		<canvas id="c" class="c"
+			bgColor='#111111'
+			baseColor = '#0000aa'
+			showBasePlane="false"
+			viewWidth="300"
+			viewHeight='300'
+			isWireframe="false"
+			camPos="0, 0, 0",
+			camLookAt= "0, 0, 1"
+			obj ="http://localhost:8080/site/models/PenroseDavid.stl"
+		></canvas>
+	</div>
+
+
+	<div class="grid-item" align="text-bottom" >
+		<canvas id="c" class="c"
+			bgColor='#111111'
+			baseColor = '#0000aa'
+			viewWidth="400"
+			viewHeight='300'
+			isWireframe="false"	
+			obj ="http://localhost:8080/site/models/binary_clock_face.stl"
+		></canvas>
+	</div>
+
+	<div class="grid-item" align="text-bottom" >
+		<canvas id="c" class="c"
+			bgColor='#111111'
+			baseColor = '#0000aa'
+			viewWidth="400"
+			viewHeight='300'
+			isWireframe="false"
+			showBasePlane="true"
+			obj ="http://localhost:8080/site/models/Frame.stl"
+		></canvas>
+	</div>
+-->
+</div>
+
+<script type="module"  src="site/js/multi_3d_view.js"></script>	    
+ 
 </body>
 </html>
