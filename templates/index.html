@@ -1,0 +1,36 @@
+
+{% extends 'base.html' %}
+
+{% block head %}
+<head>
+  <title>3DViewer</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+</head>
+{% endblock %}
+
+{% block body %}
+<body>
+
+  <canvas id="c" class="c" camPos=" 0, 0, 10" , camLookAt="1, 1, 1" ,></canvas>
+  <div class='Help'>
+      <div class='HelpBox' id='InfoBox'> 
+                            Select objects by hovering over and clicking. <br>
+                            Double click with the <b>right</b> button anywhere to deselect the currently selected object. <br>
+                            <b>Keys</b> <br>
+                            <b>i</b> open this window <br>
+                            <b>g</b> move selection <br>
+                            <b>s</b> scale selection <br>
+                            <b>r</b> rotate selecion <br>
+                            <b>x</b> delete selection <br>
+                            <center> <b> CLICK TO HIDE </b> </center> <br> 
+      </div>
+  </div>
+
+  <script type="module" src="../static/js/script.js"></script>
+
+</body>
+
+{% endblock %}
+

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Threejs Project</title>
+    
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/load.css') }}">
+
+           <style>
+            *{ box-sizing: border-box; -moz-box-sizing: border-box; margin: 0; padding: 0 }
+            body {
+                color: #ddd;
+                font-family: 'Roboto Condensed', tahoma, sans-serif; font-weight: 100;
+                font-size:13px;
+                background-color: #222;
+                margin: 0px;
+                overflow: hidden;
+                line-height: 1.4em;
+            }
+            a{ color: #ec6e11; font-weight: bold; text-decoration: none; border-bottom: 1px solid rgba( 236, 110, 17, .2 ); -webkit-transition: color 150ms ease-out, border-color 150ms ease-out; transition: color 150ms ease-out, border-color 150ms ease-out; }
+            a:hover{ color: #fff; border-bottom: 1px solid rgba( 255,255,255, .2 );}
+            #container{ position: absolute; left: 0; top: 0; width: 100%; height: 100%; bottom: 0; background-color: #222; }
+            #options{ position: absolute; right: 0; top: 10px; width: 34em; }
+            #options ul{ list-style-type: none; margin-bottom: .5em; display: inline-block;}
+            #options li{ float: left; margin-right: 4px;}
+            h1{ font-weight: 400; font-size: 16px; margin-bottom: .5em; color: #eee;}
+            p{ margin-bottom: .5em;}
+            b{ font-weight: inherit; color: #ec6e11;}
+            #options div{ float: left;}
+            #title{ position: absolute; left: 10px; top: 10px;}
+            .o{ clear: both; width: 100%; position: relative; }
+            .o p{ position: absolute; right: 10px; top: 0;}
+            .o span{ width: 3em; text-align: right; display: inline-block;}
+            .ui{ pointer-events: auto; opacity: 1; -webkit-transition: opacity 150ms ease-out; transition: opacity 150ms ease-out;}
+            .hidden{ opacity: 0; pointer-events: none;}
+            .button{ padding: .5em 1em; background-color: #ec6e11; border: 1px solid #a64b14; outline: none; border-radius: 4px; color: #fff; font-weight: normal; -webkit-transition: background-color 150ms ease-out; text-shadow: 0 -1px 0 rgba( 70, 31, 8, .5 ); height: 0; line-height: 2.5em; }
+            .button:hover, .button.active{ text-decoration: none; border: 1px solid #a64b14; background-color: #f88c3c;}
+            input[type='checkbox'] + label:before { display: inline-block; width: 1em; color: #666; font-weight: bold; content:"✓"; }
+            input[type='checkbox']:checked + label:before { color: #ec6e11; content:"✓"; }
+
+            @media (max-width: 880px) {
+                #title{ left: 10px; right: 10px;}
+                #title p{ display: none; }
+                #title h1{ width: 100%; text-align: center;}
+                #options{ top: auto; bottom: 10px; left: 50%; width: 34em; margin-left: -17em;}
+            }
+
+            @media (max-width: 500px) {
+                #options{ top: auto; bottom: 10px; left: 50%; margin-left: -9em; width: 18em;}
+                .o p b{ display: none;}
+            }
+
+        </style>
+
+    {% block head %}{% endblock %}
+</head>
+<body>
+    {% block body %}
+    <script src="{{ url_for('static', filename='plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+	{% endblock %}
+</body>
+</html>
