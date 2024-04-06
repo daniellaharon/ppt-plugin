@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .grid-item {
+            position: relative; /*relative or absolute, fixed, etc. */
+            top: 50px;
+            left: 50px;
+ 
+            background-color: #e0e0e0;
+            border: 1px solid #999;
+        }
+    </style>
+ 
+	<link rel="stylesheet" href="style.css">
+	<title>3D viewer</title>
+</head>
+
+<body>
+<h2>Three.js <span>3D viewer</span></h2>
+
+<div id="dat-gui-holder" ></div>
+<div class="grid-container" >
+	<div class="grid-item" align="text-bottom" >
+		<canvas id="c" class="c"
+			bgColor='#111111'
+			baseColor = '#aaaaaa'
+			showBasePlane="true"
+			viewWidth="300"
+			viewHeight='300'
+			isWireframe="false"
+			debug="false"
+
+			obj ="site/models/Duck33336_95.glb"
+
+		></canvas>
+ 
+	</div>
+		<div class="grid-item" align="text-bottom" >
+		<canvas id="c" class="c"
+			bgColor='#111111'
+			baseColor = '#0000aa'
+			showBasePlane="false"
+			viewWidth="300"
+			viewHeight='300'
+			isWireframe="false"
+			camPos=" 0, 0, 0",
+			camLookAt= "0, 0, 1"
+			obj ="site/models/PenrosePentagon.stl"
+		></canvas>
+	</div>
+	<!-- <div class="grid-item" align="text-bottom" >
+		<canvas id="c" class="c"
+			bgColor='#111111'
+			baseColor = '#0000aa'
+			viewWidth="300"
+			viewHeight='300'
+			isWireframe="false"
+			obj ="http://localhost:8080/site/models/Duck33336_95.obj"
+			mtl ="http://localhost:8080/site/models/Duck33336_95.mtl"
+		></canvas>
+	</div> -->
+<!--
+	<div class="grid-item" align="text-bottom" >
+		<canvas id="c" class="c"
+			bgColor='#111111'
+			baseColor = '#0000aa'
+			viewWidth="300"
+			viewHeight='300'
+			isWireframe="false"
+			obj ="http://localhost:8080/site/models/Duck33336_95.glb"
+		></canvas>
+	</div>
+
+	<div class="grid-item" align="text-bottom" >
+		<canvas id="c" class="c"
+			bgColor='#111111'
+			baseColor = '#0000aa'
+			showBasePlane="false"
+			viewWidth="300"
+			viewHeight='300'
+			showMenu="false"
+			camPos="0, 0, 0",
+			camLookAt= "0, 0, 1"
+			obj ="http://localhost:8080/site/models/PenroseRectangle.stl"
+		></canvas>
+	</div>
+		<div class="grid-item" align="text-bottom" >
+		<canvas id="c" class="c"
+			bgColor='#111111'
+			baseColor = '#0000aa'
+			showBasePlane="false"
+			viewWidth="300"
+			viewHeight='300'
+			isWireframe="false"
+			camPos="0, 0, 0",
+			camLookAt= "0, 0, 1"
+			obj ="http://localhost:8080/site/models/PenroseDavid.stl"
+		></canvas>
+	</div>
+
+
+	<div class="grid-item" align="text-bottom" >
+		<canvas id="c" class="c"
+			bgColor='#111111'
+			baseColor = '#0000aa'
+			viewWidth="400"
+			viewHeight='300'
+			isWireframe="false"	
+			obj ="http://localhost:8080/site/models/binary_clock_face.stl"
+		></canvas>
+	</div>
+
+	<div class="grid-item" align="text-bottom" >
+		<canvas id="c" class="c"
+			bgColor='#111111'
+			baseColor = '#0000aa'
+			viewWidth="400"
+			viewHeight='300'
+			isWireframe="false"
+			showBasePlane="true"
+			obj ="http://localhost:8080/site/models/Frame.stl"
+		></canvas>
+	</div>
+-->
+</div>
+
+<script type="module"  src="site/js/multi_3d_view.js"></script>	    
+ 
+</body>
+</html>
